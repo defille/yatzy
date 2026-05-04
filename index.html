@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casino Yatzy</title>
+<title>Filipzy</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
@@ -580,26 +580,167 @@ h1{
   .ach-list{grid-template-columns:1fr;}
   .skin-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));}
 }
+
+/* ── Summer dealer character ── */
+.summer-figure{display:none;flex-direction:column;align-items:center;width:80px;position:relative;}
+.sf-hat{width:34px;height:20px;background:linear-gradient(180deg,#FFD600,#FFA000);border-radius:6px 6px 0 0;border:1px solid rgba(255,160,0,0.55);position:relative;z-index:2;}
+.sf-hat::after{content:'';position:absolute;bottom:-8px;left:-15px;right:-15px;height:9px;background:linear-gradient(180deg,#FFD600,#FFAB00);border-radius:50% 50% 0 0/100% 100% 0 0;border:1px solid rgba(255,160,0,0.4);}
+.sf-hat-band{position:absolute;bottom:4px;left:0;right:0;height:4px;background:rgba(230,50,20,0.7);}
+.sf-face{width:40px;height:38px;background:linear-gradient(180deg,#c8936c,#a87050);border-radius:50% 50% 44% 44%;margin-top:10px;position:relative;box-shadow:0 3px 10px rgba(0,0,0,0.3);}
+.sf-face::before,.sf-face::after{content:'';position:absolute;width:5px;height:6px;background:#1e0e06;border-radius:50%;top:14px;}
+.sf-face::before{left:9px;}.sf-face::after{right:9px;}
+.sf-shades{position:absolute;top:9px;left:3px;right:3px;height:9px;background:rgba(0,0,0,0.62);border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.5);}
+.sf-shades::after{content:'';position:absolute;top:1px;left:50%;transform:translateX(-50%);width:4px;height:calc(100% - 2px);background:rgba(80,50,20,0.6);border-radius:2px;}
+.sf-smile{position:absolute;width:18px;height:7px;border-bottom:2.5px solid rgba(100,45,15,0.7);border-radius:0 0 50% 50%;left:11px;top:26px;pointer-events:none;}
+.sf-collar{display:flex;gap:3px;width:36px;margin-top:1px;}
+.sf-collar-l,.sf-collar-r{flex:1;height:10px;background:#FFF8E1;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);}
+.sf-shirt{width:56px;height:34px;background:linear-gradient(160deg,#FF7043,#E64A19);border-radius:5px 5px 12px 12px;border:1px solid rgba(255,100,50,0.32);position:relative;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,0.16);margin-top:0;}
+.sf-shirt::before,.sf-shirt::after{content:'';position:absolute;top:0;width:14px;height:18px;background:#FFF8E1;}
+.sf-shirt::before{left:0;clip-path:polygon(0 0,100% 0,0 100%);}
+.sf-shirt::after{right:0;clip-path:polygon(0 0,100% 0,100% 100%);}
+.sf-flower{width:11px;height:11px;position:relative;z-index:1;margin-top:4px;background:radial-gradient(circle,#FFD700 32%,#FF5722 70%);border-radius:50%;box-shadow:0 0 5px rgba(255,120,0,0.6);}
+.sf-arm{background:linear-gradient(90deg,#E64A19 35%,#a87050) !important;}
+body.summer-theme .summer-figure{display:flex;}
+body.summer-theme #dealerFigure{display:none;}
+
+/* ── Filled row improvements ── */
+.score-row.filled{opacity:1;}
+.score-row.filled:not(.scratched){background:rgba(8,58,8,0.38);border-left:2px solid rgba(45,170,45,0.7) !important;}
+.score-row.filled:not(.scratched) .score-name{color:rgba(110,210,100,0.94);}
+.score-row.scratched{background:rgba(52,7,5,0.32);}
+
+/* ── Summer theme ── */
+body.summer-theme{background-color:#5bb8e8;background-image:radial-gradient(ellipse 80% 55% at 12% 12%,rgba(255,200,50,0.42) 0%,transparent 58%),radial-gradient(ellipse 70% 50% at 88% 88%,rgba(255,130,0,0.32) 0%,transparent 55%),radial-gradient(ellipse 55% 45% at 50% 50%,rgba(80,180,255,0.28) 0%,transparent 70%),linear-gradient(180deg,#87CEEB 0%,#b0e2ff 55%,#FFD090 100%);color:#2c1810;}
+body.summer-theme .suit-corner{color:#FF7043;opacity:0.14;}
+body.summer-theme .deco-line.top{background:linear-gradient(90deg,transparent,rgba(255,140,0,0.28),rgba(255,200,50,0.68),rgba(255,140,0,0.28),transparent);}
+body.summer-theme .deco-line.bottom{background:linear-gradient(90deg,transparent,rgba(64,164,223,0.28),rgba(64,164,223,0.58),rgba(64,164,223,0.28),transparent);}
+body.summer-theme h1{color:#E65100;text-shadow:0 0 28px rgba(255,112,67,0.45),0 2px 8px rgba(0,0,0,0.2);}
+body.summer-theme .h1-suits{color:rgba(255,112,67,0.45);}
+body.summer-theme .subtitle{color:rgba(255,112,67,0.45);}
+body.summer-theme .hdr-coins{background:linear-gradient(135deg,rgba(255,248,220,0.95),rgba(255,240,200,0.98));border-color:rgba(255,140,0,0.5);color:#E65100;}
+body.summer-theme .hdr-btn{background:rgba(255,255,255,0.75);border-color:rgba(255,112,67,0.5);color:#E65100;}
+body.summer-theme .hdr-btn:hover{background:rgba(255,255,255,0.92);border-color:rgba(255,112,67,0.85);color:#BF360C;box-shadow:0 0 12px rgba(255,112,67,0.2);}
+body.summer-theme .dice-area{background:linear-gradient(160deg,rgba(255,248,195,0.97),rgba(255,242,160,0.99));border-color:rgba(255,140,0,0.4);box-shadow:0 10px 42px rgba(0,0,0,0.16),inset 0 1px 0 rgba(255,255,255,0.7);}
+body.summer-theme .dice-area::before{background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(255,200,100,0.07) 6px,rgba(255,200,100,0.07) 7px);}
+body.summer-theme .turn-info{color:rgba(200,100,10,0.65);}
+body.summer-theme .turn-info strong{color:#E65100;}
+body.summer-theme .dealer-label{color:rgba(200,100,20,0.5);}
+body.summer-theme .roll-btn{background:linear-gradient(135deg,#0288D1,#01579B);border-color:rgba(255,255,255,0.35);color:#fff;box-shadow:0 4px 20px rgba(2,136,209,0.42);}
+body.summer-theme .roll-btn:hover:not(:disabled){background:linear-gradient(135deg,#039BE5,#0277BD);box-shadow:0 6px 26px rgba(2,136,209,0.58);}
+body.summer-theme .roll-btn:disabled{background:rgba(190,220,240,0.5);color:rgba(90,130,160,0.5);border-color:rgba(100,160,200,0.2);}
+body.summer-theme .roll-dot{background:rgba(200,230,250,0.55);border-color:rgba(100,160,200,0.38);}
+body.summer-theme .roll-dot.done{background:#0288D1;border-color:#039BE5;box-shadow:0 0 7px rgba(2,136,209,0.65);}
+body.summer-theme .roll-dot.next{background:transparent;border-color:#0288D1;}
+body.summer-theme .roll-text{color:rgba(180,90,20,0.65);}
+body.summer-theme .roll-text strong{color:#E65100;}
+body.summer-theme .hint{color:rgba(150,75,20,0.55);}
+body.summer-theme .scratch-btn{background:rgba(255,200,200,0.22);border-color:rgba(200,70,50,0.32);color:rgba(190,55,35,0.68);}
+body.summer-theme .scratch-btn:hover:not(:disabled){background:rgba(255,170,150,0.4);border-color:rgba(210,70,50,0.65);color:rgba(190,45,25,0.9);}
+body.summer-theme .scratch-btn.active{background:rgba(255,150,130,0.5);border-color:rgba(210,65,45,0.88);color:rgba(185,38,20,0.95);font-weight:700;}
+body.summer-theme .scorecard{background:linear-gradient(160deg,rgba(255,252,235,0.97),rgba(255,248,215,0.99));border-color:rgba(255,140,0,0.32);box-shadow:0 10px 40px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.85);}
+body.summer-theme .scorecard h2{color:rgba(210,95,20,0.55);}
+body.summer-theme .section-label{color:rgba(180,75,18,0.62);}
+body.summer-theme .section-label::before,body.summer-theme .section-label::after{background:rgba(255,140,0,0.18);}
+body.summer-theme .score-row.casino-cat{border-left-color:rgba(255,140,0,0.3);}
+body.summer-theme .score-row.clickable:hover{background:rgba(255,195,90,0.18);}
+body.summer-theme .score-row.preview{border-left-color:rgba(255,140,0,0.68);animation:previewPulseSummer 2.4s ease-in-out infinite;}
+@keyframes previewPulseSummer{0%,100%{background:rgba(255,220,100,0.1);}50%{background:rgba(255,195,70,0.22);}}
+body.summer-theme .score-row.preview:hover{background:rgba(255,195,80,0.32) !important;animation:none;}
+body.summer-theme .score-row.scratch-option{background:rgba(255,180,170,0.14);border-left-color:rgba(200,60,40,0.32);}
+body.summer-theme .score-row.scratch-option:hover{background:rgba(255,160,140,0.24) !important;}
+body.summer-theme .score-row.scratch-option .score-name{color:rgba(175,70,55,0.65);}
+body.summer-theme .score-row.scratch-option .score-desc{color:rgba(155,65,50,0.45);}
+body.summer-theme .score-row.filled:not(.scratched){background:rgba(80,180,60,0.18);border-left-color:rgba(50,155,35,0.65) !important;}
+body.summer-theme .score-row.filled:not(.scratched) .score-name{color:rgba(30,120,20,0.92);}
+body.summer-theme .score-row.scratched{background:rgba(190,55,40,0.14);}
+body.summer-theme .score-name{color:#5D4037;}
+body.summer-theme .score-desc{color:rgba(140,75,38,0.48);}
+body.summer-theme .score-val.preview-pos{color:#E65100;text-shadow:0 0 8px rgba(255,112,67,0.38);}
+body.summer-theme .score-val.scored{color:#2E7D32;}
+body.summer-theme .score-val.scored-zero{color:rgba(195,55,38,0.58);}
+body.summer-theme .score-val.scratch-zero{color:rgba(195,58,40,0.62);}
+body.summer-theme .score-val.empty{color:rgba(145,95,55,0.3);}
+body.summer-theme .divider{background:linear-gradient(90deg,transparent,rgba(255,140,0,0.18),transparent);}
+body.summer-theme .bonus-track{color:rgba(175,80,18,0.58);}
+body.summer-theme .bonus-val{color:#E65100;}
+body.summer-theme .bonus-bar-wrap{background:rgba(195,220,240,0.48);}
+body.summer-theme .bonus-bar-fill{background:linear-gradient(90deg,#0288D1,#FF7043);}
+body.summer-theme .total-row{border-top-color:rgba(255,140,0,0.22);color:#E65100;}
+body.summer-theme .total-row.pop{animation:totalPopSummer 0.5s ease;}
+@keyframes totalPopSummer{0%{transform:scale(1);}40%{transform:scale(1.1);color:#FF3D00;}100%{transform:scale(1);}}
+body.summer-theme .scorecard.must-choose{animation:scPulseSummer 1.4s ease-in-out infinite;}
+@keyframes scPulseSummer{0%,100%{border-color:rgba(255,140,0,0.32);}50%{border-color:rgba(255,70,30,0.62);}}
+body.summer-theme .overlay,body.summer-theme .shop-overlay,body.summer-theme .ach-overlay{background:rgba(5,20,50,0.86);}
+body.summer-theme .modal{background:linear-gradient(158deg,#fffbec,#fffde6);border-color:rgba(255,140,0,0.48);}
+body.summer-theme .modal h2{color:#E65100;text-shadow:0 0 22px rgba(255,112,67,0.38);}
+body.summer-theme .modal .label{color:rgba(195,95,18,0.58);}
+body.summer-theme .final-score-val{color:#2c1810;}
+body.summer-theme .score-rating{color:rgba(195,95,18,0.75);}
+body.summer-theme .earned-line{color:rgba(145,75,40,0.55);}
+body.summer-theme .total-coins-line{color:#E65100;}
+body.summer-theme .modal-new-ach-title{color:rgba(195,95,18,0.52);}
+body.summer-theme .modal-ach-badge{background:rgba(255,248,215,0.92);border-color:rgba(255,140,0,0.38);color:#E65100;}
+body.summer-theme .play-again-btn{background:linear-gradient(135deg,#0288D1,#01579B);border-color:rgba(255,255,255,0.28);color:#fff;}
+body.summer-theme .play-again-btn:hover{background:linear-gradient(135deg,#039BE5,#0277BD);}
+body.summer-theme .shop-btn{background:rgba(255,248,215,0.9);border-color:rgba(255,140,0,0.48);color:#E65100;}
+body.summer-theme .shop-btn:hover{background:rgba(255,240,195,0.98);border-color:rgba(255,140,0,0.75);}
+body.summer-theme .ach-modal-btn{background:rgba(255,248,215,0.48);border-color:rgba(255,140,0,0.18);color:rgba(195,95,18,0.68);}
+body.summer-theme .ach-modal-btn:hover{border-color:rgba(255,140,0,0.42);color:rgba(195,95,18,0.9);}
+body.summer-theme .float-pts.pts-good{color:#E65100;text-shadow:0 0 12px rgba(255,112,67,0.85);}
+body.summer-theme .bonus-popup{background:rgba(255,252,235,0.97);border-color:rgba(255,140,0,0.58);color:#E65100;text-shadow:none;}
+body.summer-theme .ach-toast{background:linear-gradient(135deg,rgba(255,252,235,0.97),rgba(255,248,218,0.99));border-color:rgba(255,140,0,0.58);}
+body.summer-theme .ach-toast-title{color:rgba(195,95,18,0.58);}
+body.summer-theme .ach-toast-name{color:#E65100;}
+body.summer-theme .ach-toast-desc{color:rgba(145,75,40,0.48);}
+body.summer-theme .shop-modal,body.summer-theme .ach-modal{background:linear-gradient(158deg,#fffbec,#fffde6);border-color:rgba(255,140,0,0.38);}
+body.summer-theme .shop-header,body.summer-theme .ach-modal-header{border-bottom-color:rgba(255,140,0,0.15);}
+body.summer-theme .shop-title,body.summer-theme .ach-modal-title{color:#E65100;}
+body.summer-theme .shop-coins-badge{background:rgba(255,248,215,0.9);border-color:rgba(255,140,0,0.38);color:#E65100;}
+body.summer-theme .shop-close-btn,body.summer-theme .ach-modal-close{color:rgba(195,95,18,0.48);}
+body.summer-theme .shop-close-btn:hover,body.summer-theme .ach-modal-close:hover{color:#E65100;background:rgba(255,140,0,0.1);}
+body.summer-theme .shop-tabs{border-bottom-color:rgba(255,140,0,0.1);}
+body.summer-theme .shop-tab{color:rgba(170,78,18,0.42);}
+body.summer-theme .shop-tab.active{color:#E65100;border-bottom-color:#E65100;}
+body.summer-theme .shop-tab:hover:not(.active){color:rgba(210,95,25,0.75);}
+body.summer-theme .skin-card{background:rgba(255,248,222,0.9);border-color:rgba(255,140,0,0.16);}
+body.summer-theme .skin-card:hover{border-color:rgba(255,140,0,0.42);}
+body.summer-theme .skin-name{color:#4E342E;}
+body.summer-theme .skin-desc{color:rgba(145,72,38,0.48);}
+body.summer-theme .skin-price-lbl.cost{color:rgba(195,95,18,0.65);}
+body.summer-theme .skin-price-lbl.owned{color:#E65100;}
+body.summer-theme .skin-buy-btn{background:rgba(255,240,198,0.7);border-color:rgba(255,140,0,0.38);color:#E65100;}
+body.summer-theme .skin-buy-btn:hover:not(:disabled){background:rgba(255,222,172,0.88);border-color:rgba(255,140,0,0.68);}
+body.summer-theme .inv-hint,body.summer-theme .inv-die-label{color:rgba(170,78,38,0.48);}
+body.summer-theme .inv-skin-opt.selected{border-color:#E65100;box-shadow:0 0 9px rgba(255,112,67,0.48);}
+body.summer-theme .ach-progress-line{color:rgba(170,78,38,0.48);}
+body.summer-theme .ach-item{background:rgba(255,248,222,0.9);border-color:rgba(255,140,0,0.1);}
+body.summer-theme .ach-item.unlocked{border-color:rgba(255,140,0,0.38);background:rgba(255,240,198,0.95);}
+body.summer-theme .ach-item-name{color:#E65100;}
+body.summer-theme .ach-item.locked .ach-item-name{color:rgba(175,90,55,0.5);}
+body.summer-theme .ach-item-desc{color:rgba(145,72,38,0.48);}
+body.summer-theme .ach-lock-label{color:rgba(145,72,38,0.36);}
 </style>
 </head>
 <body>
 
-<div class="suit-corner suit-tl">♠</div>
-<div class="suit-corner suit-tr">♥</div>
-<div class="suit-corner suit-bl">♣</div>
-<div class="suit-corner suit-br">♦</div>
+<div class="suit-corner suit-tl" id="cornerTL">♠</div>
+<div class="suit-corner suit-tr" id="cornerTR">♥</div>
+<div class="suit-corner suit-bl" id="cornerBL">♣</div>
+<div class="suit-corner suit-br" id="cornerBR">♦</div>
 <div class="deco-line top"></div>
 <div class="deco-line bottom"></div>
 
 <header>
   <div class="header-row">
     <div class="hdr-btns">
-      <button class="hdr-btn" onclick="openShop()">🎰 Shop</button>
-      <button class="hdr-btn" onclick="openAchievements()">🏆 Achievements</button>
+      <button class="hdr-btn" id="shopBtnEl" onclick="openShop()">🎰 Shop</button>
+      <button class="hdr-btn" id="achBtnEl" onclick="openAchievements()">🏆 Achievements</button>
+      <button class="hdr-btn" id="langBtn" onclick="toggleLanguage()">🇸🇪 Svenska</button>
+      <button class="hdr-btn" id="themeBtn" onclick="toggleTheme()">☀️ Summer</button>
     </div>
     <div class="header-center">
       <div class="h1-suits">♠ ♥ ♦ ♣</div>
-      <h1>Casino Yatzy</h1>
+      <h1>Filipzy</h1>
       <div class="subtitle">Roll · Hold · Score</div>
     </div>
     <div class="hdr-coins" id="hdrCoins">💰 0 pts</div>
@@ -609,7 +750,7 @@ h1{
 <div class="game-container">
   <div class="left-panel">
     <div class="dice-area" id="diceArea">
-      <div class="turn-info">Turn <strong id="turnNum">1</strong> of 17</div>
+      <div class="turn-info" id="turnInfo">Turn <strong id="turnNum">1</strong> of 22</div>
 
       <!-- DEALER -->
       <div class="dealer-stage">
@@ -629,7 +770,25 @@ h1{
             </div>
           </div>
         </div>
-        <div class="dealer-label">Dealer</div>
+        <!-- SUMMER CHARACTER -->
+        <div class="summer-figure" id="summerDealerFigure">
+          <div class="sf-hat"><div class="sf-hat-band"></div></div>
+          <div class="sf-face">
+            <div class="sf-shades"></div>
+            <div class="sf-smile"></div>
+          </div>
+          <div class="sf-collar">
+            <div class="sf-collar-l"></div>
+            <div class="sf-collar-r"></div>
+          </div>
+          <div class="sf-shirt"><div class="sf-flower"></div></div>
+          <div class="d-arm-wrap" id="summerArm">
+            <div class="d-arm sf-arm">
+              <div class="d-hand" id="summerHand"></div>
+            </div>
+          </div>
+        </div>
+        <div class="dealer-label" id="dealerLabel">Dealer</div>
       </div>
 
       <div class="dice-row" id="diceRow"></div>
@@ -723,11 +882,16 @@ const CATS=[
   {id:'fourKind',     name:'Four of a Kind',  sec:'lower',desc:'4 × matching value'},
   {id:'smallStraight',name:'Small Straight',  sec:'lower',desc:'15 pts — 1-2-3-4-5'},
   {id:'largeStraight',name:'Large Straight',  sec:'lower',desc:'20 pts — 2-3-4-5-6'},
-  {id:'fullHouse',    name:'Full House',       sec:'lower',desc:'25 pts — three + two'},
-  {id:'chance',       name:'Chance',           sec:'lower',desc:'Sum of all dice'},
-  {id:'yatzy',        name:'Yatzy',            sec:'lower',desc:'50 pts — all five the same'},
-  {id:'highStakes',   name:'High Stakes ♦',    sec:'lower',desc:'All dice ≥ 4 → sum all',casino:true},
-  {id:'blackjack',    name:'Blackjack ♣',      sec:'lower',desc:'Sum = 21 exactly → 50 pts',casino:true},
+  {id:'fullHouse',    name:'Full House',      sec:'lower',desc:'25 pts — three + two'},
+  {id:'luckyKind',    name:'Lucky 7',         sec:'lower',desc:'40 pts — sum = 7 exactly'},
+  {id:'allOdds',      name:'All Odds',        sec:'lower',desc:'All dice odd (1,3,5) → sum'},
+  {id:'allEvens',     name:'All Evens',       sec:'lower',desc:'All dice even (2,4,6) → sum'},
+  {id:'chance',       name:'Chance',          sec:'lower',desc:'Sum of all dice'},
+  {id:'yatzy',        name:'Yatzy',           sec:'lower',desc:'50 pts — all five the same'},
+  {id:'highStakes',   name:'High Stakes ♦',   sec:'lower',desc:'All dice ≥ 4 → sum all',casino:true},
+  {id:'blackjack',    name:'Blackjack ♣',     sec:'lower',desc:'Sum = 21 exactly → 50 pts',casino:true},
+  {id:'royalFlush',   name:'Royal Flush ♠',   sec:'lower',desc:'Any straight → 35 pts',casino:true},
+  {id:'bigWin',       name:'Big Win ♥',       sec:'lower',desc:'All dice 5 or 6 → sum all',casino:true},
 ];
 const CAT_COUNT=CATS.length;
 
@@ -743,19 +907,148 @@ const SKINS=[
 ];
 
 const ACHIEVEMENTS=[
-  {id:'first_game',  name:'First Roll',    desc:'Complete your first game',           icon:'🎲'},
-  {id:'yatzy_score', name:'Yatzy!',        desc:'Score Yatzy in a game',              icon:'⭐'},
-  {id:'upper_bonus', name:'Bonus Hunter',  desc:'Earn the +35 upper bonus',           icon:'💰'},
-  {id:'score_200',   name:'High Roller',   desc:'Score 200+ in one game',             icon:'🎰'},
-  {id:'score_300',   name:'Casino Royale', desc:'Score 300+ in one game',             icon:'👑'},
-  {id:'lucky21',     name:'Blackjack!',    desc:'Score the Blackjack category',       icon:'🃏'},
-  {id:'high_stakes', name:'High Stakes',   desc:'Score the High Stakes category',     icon:'🔥'},
-  {id:'no_scratch',  name:'Clean Sheet',   desc:'Finish with zero scratches',         icon:'✨'},
-  {id:'scratch5',    name:'Scratch Master',desc:'Scratch 5+ categories in one game',  icon:'✕'},
-  {id:'buy_skin',    name:'Shopaholic',    desc:'Buy your first skin',                icon:'🛒'},
-  {id:'own_4_skins', name:'Collector',     desc:'Own 4 or more skins',               icon:'💎'},
-  {id:'full_house',  name:'Full House',    desc:'Score Full House',                   icon:'🏠'},
+  {id:'first_game',  icon:'🎲'},
+  {id:'yatzy_score', icon:'⭐'},
+  {id:'upper_bonus', icon:'💰'},
+  {id:'score_200',   icon:'🎰'},
+  {id:'score_300',   icon:'👑'},
+  {id:'lucky21',     icon:'🃏'},
+  {id:'high_stakes', icon:'🔥'},
+  {id:'no_scratch',  icon:'✨'},
+  {id:'scratch5',    icon:'✕'},
+  {id:'buy_skin',    icon:'🛒'},
+  {id:'own_4_skins', icon:'💎'},
+  {id:'full_house',  icon:'🏠'},
+  {id:'lucky7',      icon:'🍀'},
+  {id:'royal_flush', icon:'♠️'},
+  {id:'big_win',     icon:'💥'},
 ];
+
+/* ── Language & theme ── */
+const LANG={
+  en:{
+    rollDice:'🎲 Roll Dice',shop:'🎰 Shop',ach:'🏆 Achievements',
+    scratchCat:'✕ Scratch a category',cancelScratch:'✕ Cancel scratch',
+    scorecard:'Scorecard',upper:'Upper Section',lower:'Lower Section',
+    bonus:'Bonus (upper ≥ 63)',total:'Total',dealer:'Dealer',held:'HELD',
+    gameOver:'Game Over',finalScore:'Final Score',playAgain:'Play Again',
+    openShop:'🎰 Open Shop',achTitle:'Achievements',
+    hintStart:'Press Roll Dice to begin your turn',
+    hintScratch:'Click any category to scratch it — ends your turn',
+    hintMid:'Click dice to hold · Roll again or pick a score',
+    hintEnd:'No rolls left — pick a category! (gold = score, red × = scratch)',
+    rollFirst:'Roll <strong>1</strong> of 3',rollDone:'<strong>All 3</strong> rolls used',
+    rollOf:(d)=>`Roll <strong>${d}</strong> of 3 done`,
+    turnOf:(n,m)=>`Turn ${n} of ${m}`,
+    bonusPopup:'🎰 +50 Bonus!',
+    toLang:'🇸🇪 Svenska',toTheme:'☀️ Summer',fromTheme:'🎰 Casino',
+    achUnlocked:'Achievement Unlocked!',locked:'Locked',yatzySub:'50 Points!',
+    earnedLine:(s)=>`+${s} pts earned this game`,
+    totalCoins:(c)=>`💰 Total: ${c} pts`,
+    /* categories */
+    'c-ones':'Ones','cd-ones':'Sum of all 1s',
+    'c-twos':'Twos','cd-twos':'Sum of all 2s',
+    'c-threes':'Threes','cd-threes':'Sum of all 3s',
+    'c-fours':'Fours','cd-fours':'Sum of all 4s',
+    'c-fives':'Fives','cd-fives':'Sum of all 5s',
+    'c-sixes':'Sixes','cd-sixes':'Sum of all 6s',
+    'c-onePair':'One Pair','cd-onePair':'Sum of highest pair',
+    'c-twoPairs':'Two Pairs','cd-twoPairs':'Sum of both pairs',
+    'c-threeKind':'Three of a Kind','cd-threeKind':'3 × matching value',
+    'c-fourKind':'Four of a Kind','cd-fourKind':'4 × matching value',
+    'c-smallStraight':'Small Straight','cd-smallStraight':'15 pts — 1-2-3-4-5',
+    'c-largeStraight':'Large Straight','cd-largeStraight':'20 pts — 2-3-4-5-6',
+    'c-fullHouse':'Full House','cd-fullHouse':'25 pts — three + two',
+    'c-luckyKind':'Lucky 7','cd-luckyKind':'40 pts — sum = 7 exactly',
+    'c-allOdds':'All Odds','cd-allOdds':'All dice odd (1,3,5) → sum',
+    'c-allEvens':'All Evens','cd-allEvens':'All dice even (2,4,6) → sum',
+    'c-chance':'Chance','cd-chance':'Sum of all dice',
+    'c-yatzy':'Yatzy','cd-yatzy':'50 pts — all five the same',
+    'c-highStakes':'High Stakes ♦','cd-highStakes':'All dice ≥ 4 → sum all',
+    'c-blackjack':'Blackjack ♣','cd-blackjack':'Sum = 21 exactly → 50 pts',
+    'c-royalFlush':'Royal Flush ♠','cd-royalFlush':'Any straight → 35 pts',
+    'c-bigWin':'Big Win ♥','cd-bigWin':'All dice 5 or 6 → sum all',
+    /* achievements */
+    'a-first_game':'First Roll','ad-first_game':'Complete your first game',
+    'a-yatzy_score':'Yatzy!','ad-yatzy_score':'Score Yatzy in a game',
+    'a-upper_bonus':'Bonus Hunter','ad-upper_bonus':'Earn the +50 upper bonus',
+    'a-score_200':'High Roller','ad-score_200':'Score 200+ in one game',
+    'a-score_300':'Casino Royale','ad-score_300':'Score 300+ in one game',
+    'a-lucky21':'Blackjack!','ad-lucky21':'Score the Blackjack category',
+    'a-high_stakes':'High Stakes','ad-high_stakes':'Score the High Stakes category',
+    'a-no_scratch':'Clean Sheet','ad-no_scratch':'Finish with zero scratches',
+    'a-scratch5':'Scratch Master','ad-scratch5':'Scratch 5+ categories in one game',
+    'a-buy_skin':'Shopaholic','ad-buy_skin':'Buy your first skin',
+    'a-own_4_skins':'Collector','ad-own_4_skins':'Own 4 or more skins',
+    'a-full_house':'Full House','ad-full_house':'Score Full House',
+    'a-lucky7':'Lucky 7!','ad-lucky7':'Score the Lucky 7 category',
+    'a-royal_flush':'Royal Flush!','ad-royal_flush':'Score the Royal Flush',
+    'a-big_win':'Big Win!','ad-big_win':'Score the Big Win category',
+  },
+  sv:{
+    rollDice:'🎲 Kasta tärningar',shop:'🎰 Butik',ach:'🏆 Utmärkelser',
+    scratchCat:'✕ Stryk kategori',cancelScratch:'✕ Avbryt strykning',
+    scorecard:'Poängkort',upper:'Övre sektion',lower:'Nedre sektion',
+    bonus:'Bonus (övre ≥ 63)',total:'Totalt',dealer:'Dealer',held:'HÅLL',
+    gameOver:'Spelet slut',finalScore:'Slutpoäng',playAgain:'Spela igen',
+    openShop:'🎰 Öppna butik',achTitle:'Utmärkelser',
+    hintStart:'Tryck Kasta tärningar för att börja',
+    hintScratch:'Klicka en kategori för att stryka — avslutar turen',
+    hintMid:'Klicka tärningar för att hålla · Kasta igen eller välj poäng',
+    hintEnd:'Inga kast kvar — välj kategori! (guld = poäng, rött × = stryk)',
+    rollFirst:'Kast <strong>1</strong> av 3',rollDone:'<strong>Alla 3</strong> kast använda',
+    rollOf:(d)=>`Kast <strong>${d}</strong> av 3 klart`,
+    turnOf:(n,m)=>`Tur ${n} av ${m}`,
+    bonusPopup:'🎰 +50 Bonus!',
+    toLang:'🇬🇧 English',toTheme:'☀️ Sommar',fromTheme:'🎰 Casino',
+    achUnlocked:'Utmärkelse upplåst!',locked:'Låst',yatzySub:'50 Poäng!',
+    earnedLine:(s)=>`+${s} poäng tjänade`,
+    totalCoins:(c)=>`💰 Totalt: ${c} poäng`,
+    'c-ones':'Ettor','cd-ones':'Summa av alla ettor',
+    'c-twos':'Tvåor','cd-twos':'Summa av alla tvåor',
+    'c-threes':'Treor','cd-threes':'Summa av alla treor',
+    'c-fours':'Fyror','cd-fours':'Summa av alla fyror',
+    'c-fives':'Femmor','cd-fives':'Summa av alla femmor',
+    'c-sixes':'Sexor','cd-sixes':'Summa av alla sexor',
+    'c-onePair':'Ett par','cd-onePair':'Summa av högsta paret',
+    'c-twoPairs':'Två par','cd-twoPairs':'Summa av båda paren',
+    'c-threeKind':'Tretal','cd-threeKind':'3 × matchande värde',
+    'c-fourKind':'Fyrtal','cd-fourKind':'4 × matchande värde',
+    'c-smallStraight':'Liten stege','cd-smallStraight':'15 pts — 1-2-3-4-5',
+    'c-largeStraight':'Stor stege','cd-largeStraight':'20 pts — 2-3-4-5-6',
+    'c-fullHouse':'Kåk','cd-fullHouse':'25 pts — tretal + par',
+    'c-luckyKind':'Lyckosju','cd-luckyKind':'40 pts — summa = 7 exakt',
+    'c-allOdds':'Alla udda','cd-allOdds':'Alla tärningar udda (1,3,5) → summa',
+    'c-allEvens':'Alla jämna','cd-allEvens':'Alla tärningar jämna (2,4,6) → summa',
+    'c-chance':'Chansen','cd-chance':'Summa av alla tärningar',
+    'c-yatzy':'Yatzy','cd-yatzy':'50 pts — alla fem lika',
+    'c-highStakes':'Höga insatser ♦','cd-highStakes':'Alla tärningar ≥ 4 → summa',
+    'c-blackjack':'Blackjack ♣','cd-blackjack':'Summa = 21 exakt → 50 pts',
+    'c-royalFlush':'Royal Flush ♠','cd-royalFlush':'Valfri stege → 35 pts',
+    'c-bigWin':'Storvinst ♥','cd-bigWin':'Alla tärningar 5 eller 6 → summa',
+    'a-first_game':'Första kastet','ad-first_game':'Slutför ditt första spel',
+    'a-yatzy_score':'Yatzy!','ad-yatzy_score':'Få Yatzy i ett spel',
+    'a-upper_bonus':'Bonusjägare','ad-upper_bonus':'Få +50 övre bonus',
+    'a-score_200':'Högrullare','ad-score_200':'Få 200+ i ett spel',
+    'a-score_300':'Casino Royale','ad-score_300':'Få 300+ i ett spel',
+    'a-lucky21':'Blackjack!','ad-lucky21':'Poäng i Blackjack',
+    'a-high_stakes':'Höga insatser','ad-high_stakes':'Poäng i Höga insatser',
+    'a-no_scratch':'Ren spellista','ad-no_scratch':'Avsluta utan strykningar',
+    'a-scratch5':'Strykmästare','ad-scratch5':'Stryk 5+ kategorier i ett spel',
+    'a-buy_skin':'Shoppare','ad-buy_skin':'Köp ditt första utseende',
+    'a-own_4_skins':'Samlare','ad-own_4_skins':'Äg 4 eller fler utseenden',
+    'a-full_house':'Kåk','ad-full_house':'Poäng i Kåk',
+    'a-lucky7':'Lyckosju!','ad-lucky7':'Poäng i Lyckosju',
+    'a-royal_flush':'Royal Flush!','ad-royal_flush':'Poäng i Royal Flush',
+    'a-big_win':'Storvinst!','ad-big_win':'Poäng i Storvinst',
+  }
+};
+let currentLang='en',currentTheme='casino';
+function t(key,...args){
+  const l=LANG[currentLang],v=(l&&l[key]!==undefined)?l[key]:LANG.en[key];
+  if(v===undefined)return key;
+  return typeof v==='function'?v(...args):v;
+}
 
 let lifetimeCoins,ownedSkins,equippedSkins,unlockedAch;
 function loadProgress(){
@@ -866,7 +1159,7 @@ function buySkin(id){
   lifetimeCoins-=sk.price;ownedSkins.push(id);saveProgress();playCoin();
   document.getElementById('shopCoins').textContent=lifetimeCoins;
   document.getElementById('hdrCoins').textContent=`💰 ${lifetimeCoins} pts`;
-  const tl=document.getElementById('totalCoinsLine');if(tl)tl.textContent=`💰 Total: ${lifetimeCoins} pts`;
+  const tl=document.getElementById('totalCoinsLine');if(tl)tl.textContent=t('totalCoins',lifetimeCoins);
   checkAch('buy_skin');if(ownedSkins.length>=4)checkAch('own_4_skins');
   renderShopTab();
 }
@@ -882,21 +1175,22 @@ function checkAch(id){
 }
 function showAchToast(a){
   document.getElementById('achToastIcon').textContent=a.icon;
-  document.getElementById('achToastName').textContent=a.name;
-  document.getElementById('achToastDesc').textContent=a.desc;
-  const t=document.getElementById('achToast');t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3600);
+  document.getElementById('achToastName').textContent=t('a-'+a.id);
+  document.getElementById('achToastDesc').textContent=t('ad-'+a.id);
+  document.querySelector('.ach-toast-title').textContent=t('achUnlocked');
+  const el=document.getElementById('achToast');el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),3600);
 }
 function openAchievements(){renderAchList();document.getElementById('achOverlay').classList.add('show');}
 function closeAchievements(){document.getElementById('achOverlay').classList.remove('show');}
 function renderAchList(){
   const done=unlockedAch.length,total=ACHIEVEMENTS.length;
-  document.getElementById('achProgressLine').textContent=`${done} / ${total} unlocked`;
+  document.getElementById('achProgressLine').textContent=`${done} / ${total} ${currentLang==='sv'?'upplåsta':'unlocked'}`;
   document.getElementById('achList').innerHTML=ACHIEVEMENTS.map(a=>{
     const u=unlockedAch.includes(a.id);
     return`<div class="ach-item ${u?'unlocked':'locked'}">
       <div class="ach-item-icon">${a.icon}</div>
-      <div><div class="ach-item-name">${a.name}</div><div class="ach-item-desc">${a.desc}</div>${u?'':'<div class="ach-lock-label">Locked</div>'}</div>
+      <div><div class="ach-item-name">${t('a-'+a.id)}</div><div class="ach-item-desc">${t('ad-'+a.id)}</div>${u?'':`<div class="ach-lock-label">${t('locked')}</div>`}</div>
     </div>`;
   }).join('');
 }
@@ -920,13 +1214,18 @@ function calcScore(id,d){
     case 'largeStraight':{const s=new Set(d);return[2,3,4,5,6].every(v=>s.has(v))?20:0;}
     case 'yatzy':return cnt.some(c=>c===5)?50:0;
     case 'chance':return sum;
+    case 'luckyKind':return sum===7?40:0;
+    case 'allOdds':return d.every(v=>v%2===1)?sum:0;
+    case 'allEvens':return d.every(v=>v%2===0)?sum:0;
     case 'highStakes':return d.every(v=>v>=4)?sum:0;
     case 'blackjack':return sum===21?50:0;
+    case 'royalFlush':{const s=new Set(d);return([1,2,3,4,5].every(v=>s.has(v))||[2,3,4,5,6].every(v=>s.has(v)))?35:0;}
+    case 'bigWin':return d.every(v=>v>=5)?sum:0;
   }
 }
 function upperSum(){return CATS.filter(c=>c.sec==='upper').reduce((s,c)=>s+(scores[c.id]??0),0);}
 function upperFilled(){return CATS.filter(c=>c.sec==='upper').filter(c=>c.id in scores).length;}
-function totalScore(){return Object.values(scores).reduce((a,b)=>a+b,0)+(upperFilled()===6&&upperSum()>=63?35:0);}
+function totalScore(){return Object.values(scores).reduce((a,b)=>a+b,0)+(upperFilled()===6&&upperSum()>=63?50:0);}
 
 /* ── Render dice ── */
 function renderDice(){
@@ -938,7 +1237,7 @@ function renderDice(){
     die.className='die'+(held[i]?' held':'')+(sk!=='default'?` skin-${sk}`:'');
     die.onclick=()=>toggleHold(i);
     for(let c=0;c<9;c++){const dot=document.createElement('div');dot.className='dot'+(DOT_MAP[val].includes(c)?'':' off');die.appendChild(dot);}
-    const tag=document.createElement('div');tag.className='die-held-tag';tag.textContent=held[i]?'HELD':'';
+    const tag=document.createElement('div');tag.className='die-held-tag';tag.textContent=held[i]?t('held'):'';
     wrap.appendChild(die);wrap.appendChild(tag);row.appendChild(wrap);
   });
 }
@@ -946,14 +1245,14 @@ function renderDice(){
 /* ── Render scorecard ── */
 function renderScorecard(){
   const card=document.getElementById('scorecard');
-  card.innerHTML='<h2>Scorecard</h2>';
+  card.innerHTML=`<h2>${t('scorecard')}</h2>`;
   let lastSec=null;const uf=upperFilled(),us=upperSum();
   CATS.forEach(cat=>{
     if(cat.sec!==lastSec){
       if(lastSec==='upper'){
         const d1=document.createElement('div');d1.className='divider';card.appendChild(d1);
         const bt=document.createElement('div');bt.className='bonus-track';
-        bt.innerHTML=`<span>Bonus (upper ≥ 63)</span><span class="bonus-val">${uf===6?(us>=63?'+35':'0'):`${us}/63`}</span>`;
+        bt.innerHTML=`<span>${t('bonus')}</span><span class="bonus-val">${uf===6?(us>=63?'+50':'0'):`${us}/63`}</span>`;
         card.appendChild(bt);
         const bw=document.createElement('div');bw.className='bonus-bar-wrap';
         const bf=document.createElement('div');bf.className='bonus-bar-fill';bf.style.width=`${Math.min(1,us/63)*100}%`;
@@ -961,7 +1260,7 @@ function renderScorecard(){
         const d2=document.createElement('div');d2.className='divider';card.appendChild(d2);
       }
       const lbl=document.createElement('div');lbl.className='section-label';
-      lbl.textContent=cat.sec==='upper'?'Upper Section':'Lower Section';
+      lbl.textContent=cat.sec==='upper'?t('upper'):t('lower');
       card.appendChild(lbl);lastSec=cat.sec;
     }
     const isFilled=cat.id in scores,isScratched=isFilled&&scores[cat.id]===0;
@@ -984,11 +1283,13 @@ function renderScorecard(){
     else if(potential!==null&&potential>0)val=`<span class="score-val preview-pos">${potential}</span>`;
     else if(potential!==null&&potential===0)val=`<span class="score-val scratch-zero">×</span>`;
     else val=`<span class="score-val empty">—</span>`;
-    row.innerHTML=`<div><div class="score-name">${cat.name}</div><div class="score-desc">${cat.desc}</div></div>${val}`;
+    const cName=t('c-'+cat.id)||cat.name;
+    const cDesc=t('cd-'+cat.id)||cat.desc;
+    row.innerHTML=`<div><div class="score-name">${cName}</div><div class="score-desc">${cDesc}</div></div>${val}`;
     card.appendChild(row);
   });
   const tr=document.createElement('div');tr.className='total-row';
-  tr.innerHTML=`<span>Total</span><span>${totalScore()}</span>`;
+  tr.innerHTML=`<span>${t('total')}</span><span>${totalScore()}</span>`;
   card.appendChild(tr);
   card.onclick=(e)=>{const r=e.target.closest('[data-cat-id]');if(r)assignScore(r.dataset.catId,e.clientX,e.clientY);};
 }
@@ -997,7 +1298,6 @@ function renderScorecard(){
 function updateControls(){
   const done=3-rollsLeft;
   document.getElementById('rollBtn').disabled=rollsLeft===0;
-  document.getElementById('turnNum').textContent=turn;
   for(let i=0;i<3;i++){
     const d=document.getElementById('rd'+i);
     if(i<done)d.className='roll-dot done';
@@ -1005,16 +1305,17 @@ function updateControls(){
     else d.className='roll-dot';
   }
   const rt=document.getElementById('rollText');
-  if(done===0)rt.innerHTML='Roll <strong>1</strong> of 3';
-  else if(rollsLeft===0)rt.innerHTML='<strong>All 3</strong> rolls used';
-  else rt.innerHTML=`Roll <strong>${done}</strong> of 3 done`;
+  if(done===0)rt.innerHTML=t('rollFirst');
+  else if(rollsLeft===0)rt.innerHTML=t('rollDone');
+  else rt.innerHTML=t('rollOf',done);
   const hint=document.getElementById('hint'),card=document.getElementById('scorecard'),sb=document.getElementById('scratchBtn');
   sb.disabled=!hasRolled;sb.classList.toggle('active',scratchMode);
-  sb.textContent=scratchMode?'✕ Cancel scratch':'✕ Scratch a category';
-  if(!hasRolled){hint.textContent='Press Roll Dice to begin your turn';hint.style.color='';card.classList.remove('must-choose');}
-  else if(scratchMode){hint.textContent='Click any category to scratch it — ends your turn';hint.style.color='rgba(210,110,80,0.9)';card.classList.remove('must-choose');}
-  else if(rollsLeft>0){hint.textContent='Click dice to hold · Roll again or pick a score';hint.style.color='';card.classList.remove('must-choose');}
-  else{hint.textContent='No rolls left — pick a category! (gold = score, red × = scratch)';hint.style.color='rgba(201,162,39,0.75)';card.classList.add('must-choose');}
+  sb.textContent=scratchMode?t('cancelScratch'):t('scratchCat');
+  document.getElementById('turnInfo').innerHTML=t('turnOf',turn,CAT_COUNT);
+  if(!hasRolled){hint.textContent=t('hintStart');hint.style.color='';card.classList.remove('must-choose');}
+  else if(scratchMode){hint.textContent=t('hintScratch');hint.style.color='rgba(210,110,80,0.9)';card.classList.remove('must-choose');}
+  else if(rollsLeft>0){hint.textContent=t('hintMid');hint.style.color='';card.classList.remove('must-choose');}
+  else{hint.textContent=t('hintEnd');hint.style.color=currentTheme==='casino'?'rgba(201,162,39,0.75)':'rgba(190,85,20,0.85)';card.classList.add('must-choose');}
 }
 
 /* ── Actions ── */
@@ -1023,8 +1324,9 @@ function toggleScratchMode(){if(!hasRolled)return;scratchMode=!scratchMode;rende
 
 /* ── Dealer throw animation ── */
 function dealerThrow(nonHeldIndices, callback){
-  const arm=document.getElementById('dealerArm');
-  const handEl=document.getElementById('dealerHand');
+  const isSummer=currentTheme==='summer';
+  const arm=document.getElementById(isSummer?'summerArm':'dealerArm');
+  const handEl=document.getElementById(isSummer?'summerHand':'dealerHand');
   if(!arm||!handEl||nonHeldIndices.length===0){callback();return;}
 
   /* wind-up then throw */
@@ -1153,6 +1455,9 @@ function assignScore(id,cx,cy){
   if(pts>0&&id==='fullHouse')checkAch('full_house');
   if(pts>0&&id==='blackjack')checkAch('lucky21');
   if(pts>0&&id==='highStakes')checkAch('high_stakes');
+  if(pts>0&&id==='luckyKind')checkAch('lucky7');
+  if(pts>0&&id==='royalFlush')checkAch('royal_flush');
+  if(pts>0&&id==='bigWin')checkAch('big_win');
   if(id==='yatzy'&&pts===50){celebrateYatzy();checkAch('yatzy_score');}
   if(Object.keys(scores).length===CAT_COUNT){setTimeout(endGame,id==='yatzy'&&pts===50?2900:0);return;}
   turn++;dice=[1,1,1,1,1];held=[false,false,false,false,false];
@@ -1173,7 +1478,7 @@ function floatPts(pts,x,y){
   setTimeout(()=>el.remove(),1000);
 }
 function showBonusPopup(){
-  const el=document.createElement('div');el.className='bonus-popup';el.textContent='🎰 +35 Bonus!';
+  const el=document.createElement('div');el.className='bonus-popup';el.textContent=t('bonusPopup');
   document.body.appendChild(el);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{el.style.transform='translate(-50%,-80px)';el.style.opacity='0';}));
   setTimeout(()=>el.remove(),1400);
@@ -1211,8 +1516,8 @@ function endGame(){
   renderDice();renderScorecard();
   document.getElementById('finalScoreVal').textContent=score;
   document.getElementById('scoreRating').textContent=rating(score);
-  document.getElementById('earnedLine').textContent=`+${score} pts earned this game`;
-  document.getElementById('totalCoinsLine').textContent=`💰 Total: ${lifetimeCoins} pts`;
+  document.getElementById('earnedLine').textContent=t('earnedLine',score);
+  document.getElementById('totalCoinsLine').textContent=t('totalCoins',lifetimeCoins);
   document.getElementById('hdrCoins').textContent=`💰 ${lifetimeCoins} pts`;
   const newA=_newAchThisGame.map(id=>ACHIEVEMENTS.find(a=>a.id===id)).filter(Boolean);
   const nb=document.getElementById('modalNewAch');
@@ -1234,6 +1539,43 @@ function newGame(){
   document.getElementById('scorecard').classList.remove('must-choose');
   renderDice();renderScorecard();updateControls();
   document.getElementById('hdrCoins').textContent=`💰 ${lifetimeCoins} pts`;
+}
+
+/* ── Language & theme toggle ── */
+function updateStaticText(){
+  document.getElementById('rollBtn').textContent=t('rollDice');
+  document.getElementById('shopBtnEl').textContent=t('shop');
+  document.getElementById('achBtnEl').textContent=t('ach');
+  document.getElementById('langBtn').textContent=t('toLang');
+  document.getElementById('themeBtn').textContent=currentTheme==='casino'?t('toTheme'):t('fromTheme');
+  document.querySelector('.ach-toast-title').textContent=t('achUnlocked');
+  document.getElementById('yatzy-sub').textContent=t('yatzySub');
+  /* modal text */
+  const ov=document.querySelector('#overlay .modal');
+  if(ov){
+    ov.querySelector('h2').textContent=t('gameOver');
+    ov.querySelector('.label').textContent=t('finalScore');
+    ov.querySelector('.play-again-btn').textContent=t('playAgain');
+    ov.querySelector('.shop-btn').textContent=t('openShop');
+    ov.querySelector('.ach-modal-btn').textContent=t('achTitle');
+  }
+  document.querySelector('.shop-title').textContent=t('shop');
+  document.querySelector('.ach-modal-title').textContent=t('achTitle');
+}
+function toggleLanguage(){
+  currentLang=currentLang==='en'?'sv':'en';
+  document.documentElement.lang=currentLang;
+  updateStaticText();
+  renderScorecard();renderDice();updateControls();
+  if(document.getElementById('achOverlay').classList.contains('show'))renderAchList();
+}
+function toggleTheme(){
+  currentTheme=currentTheme==='casino'?'summer':'casino';
+  document.body.classList.toggle('summer-theme',currentTheme==='summer');
+  /* swap corner decorations */
+  const corners=currentTheme==='summer'?['☀️','🌊','🌴','🌺']:['♠','♥','♣','♦'];
+  ['TL','TR','BL','BR'].forEach((p,i)=>document.getElementById('corner'+p).textContent=corners[i]);
+  updateStaticText();
 }
 
 loadProgress();
